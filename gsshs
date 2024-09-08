@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo -e "Github SSH setup (GSSHS) v1.0\n(c) 2024, Alex Free (3-BSD)\n\n"
+
+if [ $# -ne 1 ]; then
+	echo -e "Error: 1 argument is required.\nUsage:\n\ngsshs\t<github account email>"
+	exit 1
+fi
+
+if ! command -v xclip &> /dev/null; then
+	if ! command -v xclip &> /dev/null; then
+		echo "Info: xclip is not installed."
+		
+		if command -v apt &> /dev/null; then
+			echo "Info: APT package manager detected. Root privilages are required to installed xclip:"
+			sudo apt update
+			sudo apt install -y xclip
+		elif command -v dnf &> /dev/null; then
+			echo "Info: DNF package manager detected. Root privilages are required to installed xclip:"
+			sudo dnf update
+			sudo dnf install -y xclip
+		else
+			echo "Error: Unknown package manager. xclip can not be installed automatically. Please install xclip before using qtbar"
+			exit 1
+		fi
+	else
+		echo "Found xclip."
+	fi
+fi
+
+ssh-keygen -t ed25519 -C "$1" -N '' -f ~/.ssh/id_ed25519 <<< y
+cat ~/.ssh/id_ed25519.pub | xclip -selection c
+
+echo "SSH key copied to clibboard, paste it in Github."
+xdg-open "https://github.com/settings/keys"
+
