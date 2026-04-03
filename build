@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # EzRe build script
-version="1.0.1"
+version="1.0.2"
 program=gsshs
 release_name="$program-v$version"
-release_files="readme.md license.md changelog.md"
+release_files="$program readme.md license.md changelog.md"
 
 
 if [ "$1" == "deps" ]; then
@@ -20,7 +20,7 @@ if [ "$1" == "deps" ]; then
 			echo "MacPorts is not installed"
 		fi
 	
-    elif [ "$(shell uname)" = "Linux" ]; then
+    elif [ "$(uname)" = "Linux" ]; then
 		echo "Linux detected."
 	
     	if command -v dnf > /dev/null; then

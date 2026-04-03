@@ -1,8 +1,8 @@
 #!/bin/bash
 
-version=1.0.1
+version=1.0.2
 
-echo -e "Github SSH setup (GSSHS) v$version\n(C) 2024-2025, Alex Free (3-BSD)\n\n"
+echo -e "Github SSH setup (GSSHS) v$version\n(C) 2024-2026, Alex Free (3-BSD)\n\n"
 
 if [ $# -ne 2 ]; then
 	echo -e "Error: 2 arguments are required.\nUsage:\n\ngsshs <github account email> <github user name>"
@@ -17,7 +17,7 @@ fi
 git config --global user.name "$2"
 git config --global user.email "$1"
 
-if [[ "$(uname)" -ne "Darwin" ]]; then
+if [[ "$(uname)" != "Darwin" ]]; then
 
     if ! command -v xclip &> /dev/null; then
         echo "Info: xclip is not installed."
@@ -38,6 +38,8 @@ if [[ "$(uname)" -ne "Darwin" ]]; then
         echo "Found xclip."
     fi
 fi
+
+exit 
 
 ssh-keygen -t ed25519 -C "$1" -N '' -f ~/.ssh/id_ed25519 <<< y
 
