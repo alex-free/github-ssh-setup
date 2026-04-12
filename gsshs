@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=1.0.2
+version=1.0.4
 
 echo -e "Github SSH setup (GSSHS) v$version\n(C) 2024-2026, Alex Free (3-BSD)\n\n"
 
@@ -48,8 +48,6 @@ if [[ "$(uname)" != "Darwin" ]]; then
         echo "Found xclip."
     fi
 fi
-
-exit 
 
 ssh-keygen -t ed25519 -C "$1" -N '' -f ~/.ssh/id_ed25519 <<< y
 

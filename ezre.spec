@@ -1,5 +1,5 @@
 Name: gsshs
-Version: v1.0.2
+Version: v1.0.4
 Summary: Fast and easy SSH setup for Github on Mac OS and Linux.
 Release: 1
 License: 3-BSD
